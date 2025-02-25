@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech-to-Text Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Test out the Speech-to-Text API</h1>
+      <p>Quickly create audio transcription from a file upload or directly speaking into a mic.</p>
+    </header>
+
+    <main>
+      <section class="settings">
+        <div class="input-type">
+          <h2>Input type</h2>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="input-type" value="microphone" checked>
+              <span>Microphone</span>
+            </label>
+            <label>
+              <input type="radio" name="input-type" value="file-upload">
+              <span>File upload</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="language-select">
+          <h2>Language</h2>
+          <select id="language">
+            <option value="en-US">English (United States)</option>
+            <option value="en-GB">English (United Kingdom)</option>
+            <option value="es-ES">Spanish (Spain)</option>
+            <option value="fr-FR">French (France)</option>
+            <option value="de-DE">German (Germany)</option>
+            <option value="it-IT">Italian (Italy)</option>
+            <option value="nl-NL">Dutch (Netherlands)</option>
+            <option value="ja-JP">Japanese (Japan)</option>
+            <option value="ko-KR">Korean (South Korea)</option>
+            <option value="zh-CN">Chinese (Simplified, China)</option>
+          </select>
+        </div>
+
+        <div class="speaker-diarization">
+          <h2>Speaker diarization <span class="beta">BETA</span></h2>
+          <div class="slider-container">
+            <span>Off</span>
+            <input type="range" id="diarization" min="0" max="1" value="0">
+            <span>On</span>
+          </div>
+        </div>
+
+        <div class="speakers-count" id="speakers-container" style="display: none;">
+          <h2>Speakers</h2>
+          <div class="slider-container">
+            <span>1 speaker</span>
+            <input type="range" id="speakers" min="1" max="10" value="1">
+            <span>10 speakers</span>
+          </div>
+        </div>
+
+        <div class="punctuation">
+          <h2>Punctuation</h2>
+          <div class="slider-container">
+            <span>Off</span>
+            <input type="range" id="punctuation" min="0" max="1" value="1">
+            <span>On</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="file-upload-section" id="file-upload-section" style="display: none;">
+        <div class="file-upload-container">
+          <label for="audio-file" class="file-upload-label">
+            <span>Choose audio file</span>
+          </label>
+          <input type="file" id="audio-file" accept="audio/*">
+          <div class="file-name" id="file-name">No file chosen</div>
+        </div>
+        <button id="upload-button" class="action-button">Transcribe File</button>
+      </section>
+
+      <section class="microphone-section" id="microphone-section">
+        <button id="start-button" class="action-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" fill="currentColor"/>
+            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" fill="currentColor"/>
+          </svg>
+          START NOW
+        </button>
+      </section>
+
+      <section class="transcription-section">
+        <div class="transcription-container">
+          <div id="transcription" class="transcription"></div>
+          <div id="interim" class="interim"></div>
+        </div>
+      </section>
+
+      <section class="json-section">
+        <button id="show-json" class="json-button">
+          <span>Show JSON</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div id="json-output" class="json-output" style="display: none;">
+          <pre id="json-content"></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html> 
