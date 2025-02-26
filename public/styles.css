@@ -67,10 +67,6 @@ main {
   main {
     grid-template-columns: 300px 1fr;
   }
-  
-  .settings {
-    grid-row: span 2;
-  }
 }
 
 /* Settings Section */
@@ -150,6 +146,7 @@ select {
 .transcription-container {
   min-height: 200px;
   max-height: 400px;
+  margin-bottom: 1rem;
   overflow-y: auto;
   padding: 1rem;
   border: 1px solid var(--light-gray);

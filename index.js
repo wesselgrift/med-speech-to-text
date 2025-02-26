@@ -1,4 +1,3 @@
-// Web-only server for Google Speech-to-Text demo (no SoX required)
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -169,5 +168,4 @@ app.get('/health', (req, res) => {
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Web-only server running on http://localhost:${PORT}`);
-  console.log(`No SoX required for this version!`);
 }); 
