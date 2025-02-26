@@ -1,13 +1,12 @@
-# Google Speech-to-Text Demo
+# Google Speech-to-Text Web Application
 
-A real-time speech-to-text transcription application using Google Cloud Speech-to-Text API.
+A real-time speech-to-text transcription web application using Google Cloud Speech-to-Text API.
 
 ## Prerequisites
 
 - Node.js (v18 or higher)
 - Google Cloud account with Speech-to-Text API enabled
 - Google Cloud credentials JSON file
-- SoX (for audio recording with the command-line demo) - see installation instructions below
 
 ## Setup
 
@@ -17,66 +16,32 @@ A real-time speech-to-text transcription application using Google Cloud Speech-t
    npm install
    ```
 3. Place your Google Cloud credentials JSON file in the project root as `google-credentials.json`
-4. Update the `.env` file with your Google Cloud Project ID
-5. Install SoX (required for command-line demo):
-   - **macOS**: `brew install sox`
-   - **Ubuntu/Debian**: `sudo apt-get install sox libsox-fmt-all`
-   - **Windows**: Download from [SoX website](https://sourceforge.net/projects/sox/files/sox/) and add to PATH
+4. Update the `.env` file with your Google Cloud Project ID:
+   ```
+   GOOGLE_PROJECT_ID=your-project-id
+   GOOGLE_APPLICATION_CREDENTIALS=./google-credentials.json
+   ```
 
 ## Usage
 
-### Command Line Demo (requires SoX)
-
-Run the command line demo:
+Start the web server:
 
 ```
 npm start
 ```
 
-This will start recording from your microphone and display the transcription in the terminal.
-
-### Web Interface
-
-Start the web server:
-
-```
-npm run web
-```
-
 Then open your browser to `http://localhost:3000` to use the web interface.
-
-### Web-Only Mode (No SoX Required)
-
-If you're deploying to a server and don't want to install SoX, use the web-only mode:
-
-```
-npm run web-only
-```
-
-This runs only the web interface without the command-line demo dependencies.
 
 ## Server Deployment Options
 
-### Option 1: Standard Deployment (with SoX)
+### Standard Deployment
 
-1. Install SoX on your server:
-   - **Ubuntu/Debian**: `sudo apt-get install sox libsox-fmt-all`
-   - **CentOS/RHEL**: `sudo yum install sox sox-devel`
-   - **Amazon Linux**: `sudo amazon-linux-extras install epel && sudo yum install sox`
+Run the web server:
+```
+npm start
+```
 
-2. Run the web server:
-   ```
-   npm run web
-   ```
-
-### Option 2: Web-Only Deployment (No SoX Required)
-
-1. Run the web-only server:
-   ```
-   npm run web-only
-   ```
-
-### Option 3: Docker Deployment
+### Docker Deployment
 
 1. Build the Docker image:
    ```
